@@ -3,7 +3,7 @@
 [![Live Documentation Site](https://img.shields.io/badge/Live%20Site-View%20Project-c04d2a?style=for-the-badge)](https://umair-asad2001.github.io/spreadsheet-to-database-migration/)
 [![Built With](https://img.shields.io/badge/Built%20With-MS%20Access%20%7C%20SQL-4a6fc4?style=for-the-badge)]()
 
-**🔗 Live Documentation Site:** **[umair-asad2001.github.io/Hospital-DBMS-Design-and-Implementation](https://umair-asad2001.github.io/spreadsheet-to-database-migration/)**
+**🔗 Live Documentation Site:** **[umair-asad2001.github.io/spreadsheet-to-database-migration](https://umair-asad2001.github.io/spreadsheet-to-database-migration/)**
 
 ---
 
