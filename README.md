@@ -7,10 +7,6 @@
 
 ---
 
-**🔗 Live Documentation Website:**
-**[umair-asad2001.github.io/spreadsheet-to-database-migration](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)**
-
----
 
 ## Executive Summary
 
