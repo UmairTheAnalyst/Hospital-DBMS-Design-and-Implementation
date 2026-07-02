@@ -1,14 +1,14 @@
 # 🏥 Hospital Records Management System
 ### From Spreadsheet to Relational Database — A Design & Implementation Case Study
 
-[![Live Site](https://img.shields.io/badge/Live%20Documentation-Visit%20Site-c04d2a?style=for-the-badge&logo=googlechrome&logoColor=white)](https://umair-asad2001.github.io/spreadsheet-to-database-migration/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Project%20Files-1a1917?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Umair-Asad2001/Hospital-DBMS-Design-and-Implementation/)
+[![Live Site](https://img.shields.io/badge/Live%20Documentation-Visit%20Site-c04d2a?style=for-the-badge&logo=googlechrome&logoColor=white)](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Project%20Files-1a1917?style=for-the-badge&logo=github&logoColor=white)](https://github.com/UmairTheAnalyst/Hospital-DBMS-Design-and-Implementation/)
 [![Built With](https://img.shields.io/badge/Built%20With-MS%20Access%20%7C%20SQL-4a6fc4?style=for-the-badge)]()
 
 ---
 
 **🔗 Live Documentation Website:**
-**[umair-asad2001.github.io/spreadsheet-to-database-migration](https://umair-asad2001.github.io/spreadsheet-to-database-migration/)**
+**[umair-asad2001.github.io/spreadsheet-to-database-migration](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)**
 
 ---
 
@@ -305,4 +305,4 @@ are needed.
 ## Author
 
 **Umair Asad**
-[github.com/Umair-Asad2001](https://github.com/Umair-Asad2001)
+[github.com/UmairTheAnalyst](https://github.com/UmairTheAnalyst)
