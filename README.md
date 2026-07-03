@@ -61,18 +61,18 @@ Migrated a hospital patient record system from a fragile Excel workbook to a nor
 ```
 Hospital-DBMS-Design-and-Implementation/
 │
-├── Hospital_DBMS.accdb
+├── hospital-database-successful-implementation.accdb
 │   └── The working Microsoft Access database. Open in Access to inspect the
 │       5-table normalized schema, 4 enforced relationships, saved queries
 │       (IPD Billing, OPD Billing, Unpaid IPD Bills, Unpaid OPD Bills),
 │       data-entry forms (OPD Visits Form, IPD Admissions Form), and reports.
 │
-├── Final_Hospital_Patients_record_management.xlsx
+├── hospital-database-unsuccessful-excel-implementation.xlsx
 │   └── The original Excel workbook, preserved unmodified as a "before"
 │       reference. Contains the broken XLOOKUP formula chains that motivated
 │       the migration to Access.
 │
-├── Microsoft_Access_Relationships_between_tables.jpeg
+├── microsoft-access-relationships.jpeg
 │   └── Screenshot: The actual Access Relationships window showing all four
 │       enforced one-to-many connections between the five tables.
 │
@@ -106,7 +106,7 @@ A billing record cannot reference a patient, ward, or bill type that does not ex
 constraint is guaranteed at the engine level and was structurally impossible to replicate
 in Excel.
 
-![Microsoft Access Relationships Window — all five tables and four enforced one-to-many connections](Microsoft Access Relationships between tables.jpeg)
+![Microsoft Access Relationships Window — all five tables and four enforced one-to-many connections](microsoft-access-relationships.jpeg)
 
 ---
 
