@@ -57,12 +57,6 @@ exactly why it broke — is documented on the live website above.
 ```
 Hospital-DBMS-Design-and-Implementation/
 │
-├── index.html
-│   └── Full project documentation site — problem statement, Excel formula
-│       breakdown (with annotated screenshots), Access schema, ERD screenshot,
-│       SQL query, comparison table, and database overview. Deployed via
-│       GitHub Pages at the live link above.
-│
 ├── Hospital_DBMS.accdb
 │   └── The working Microsoft Access database. Open in Access to inspect the
 │       5-table normalized schema, 4 enforced relationships, saved queries
