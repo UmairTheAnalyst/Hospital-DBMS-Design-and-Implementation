@@ -1,40 +1,44 @@
 # 🏥 Hospital Records Management System
 ### From Spreadsheet to Relational Database — A Design & Implementation Case Study
 
-[![Live Site](https://img.shields.io/badge/Live%20Documentation-Visit%20Site-c04d2a?style=for-the-badge&logo=googlechrome&logoColor=white)](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Project%20Files-1a1917?style=for-the-badge&logo=github&logoColor=white)](https://github.com/UmairTheAnalyst/Hospital-DBMS-Design-and-Implementation/)
-[![Built With](https://img.shields.io/badge/Built%20With-MS%20Access%20%7C%20SQL-4a6fc4?style=for-the-badge)]()
+<div align="center">
+
+![Microsoft Excel](https://img.shields.io/badge/Microsoft%20Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
+&nbsp;&nbsp;&nbsp;`——→`&nbsp;&nbsp;&nbsp;
+![Microsoft Access](https://img.shields.io/badge/Microsoft%20Access-A4373A?style=for-the-badge&logo=microsoft&logoColor=white)
+
+<br>
+
+![SQL](https://img.shields.io/badge/SQL%20Queries-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+&nbsp;&nbsp;
+![3NF Normalization](https://img.shields.io/badge/3NF%20Normalization-1a1917?style=for-the-badge&logo=databricks&logoColor=white)
+&nbsp;&nbsp;
+![Referential Integrity](https://img.shields.io/badge/Referential%20Integrity-c04d2a?style=for-the-badge)
+&nbsp;&nbsp;
+![Relational Design](https://img.shields.io/badge/Relational%20Design-4a6fc4?style=for-the-badge)
+
+</div>
 
 ---
 
+🔗 **Project Case Study:**  
+👉 **[Explore the Detailed Migration Case Study](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)**
+
+---
 
 ## Executive Summary
 
-This project documents the complete migration of a hospital patient records system from a
-**formula-driven Microsoft Excel workbook** to a **normalized relational database in Microsoft
-Access** — and clearly explains *why* that migration was necessary.
+Migrated a hospital patient record system from a fragile Excel workbook to a normalized Microsoft Access database to resolve critical data integrity and scalability issues.
 
-The Excel version attempted to track 20 patients across OPD (outpatient) and IPD (inpatient)
-care by chaining five `XLOOKUP` formulas across four sheets: one to pull patient names into
-billing records, one to calculate each patient's current condition, one to detect OPD-to-IPD
-transitions, one to flag that transition on the OPD side, and one to roll up each patient's
-total bill back onto their master record. As soon as a patient existed in *both* the OPD and
-IPD tables simultaneously — a routine scenario in a real hospital — the formula chain
-contradicted itself, silently returning blank cells instead of errors and making billing
-accuracy unverifiable.
+#### The Challenge
+* **The Excel Experiment:** Attempted to build a unified database and data-analysis system within a single Excel workbook. 
+* **Tool Limitations:** The architecture ultimately failed due to Excel's flat-data model, which lacked primary keys, referential integrity, and a clear separation between data storage and data querying.
+* **Logic Breakdown:** A complex chain of five nested `XLOOKUP` formulas failed during routine inpatient/outpatient transitions, silently returning blank cells and compromising billing accuracy.
 
-The core issue was not formula complexity. It was a **structural mismatch**: Excel is a
-calculation and analysis tool operating on flat data. It has no primary keys, no foreign key
-enforcement, no referential integrity, and no separation between *storing* records and
-*querying* them. Every feature needed to manage connected records reliably — unique IDs,
-enforced table relationships, cascade rules, typed fields — is architecturally absent from
-a spreadsheet.
-
-This project re-architects the same dataset in Microsoft Access using proper relational
-database design: five normalized tables, four engine-enforced relationships, dynamic SQL
-queries that replace the broken formula chains, and data entry forms that prevent direct
-cell editing. The full decision-making process — including every formula that was tried and
-exactly why it broke — is documented on the live website above.
+#### The Solution (Access Architecture)
+* **Relational Redesign:** Engineered a robust schema featuring five normalized tables and four engine-enforced relationships.
+* **Dynamic Computing:** Replaced brittle spreadsheet formula chains with live SQL queries to calculate aggregations dynamically on demand.
+* **Data Security:** Deployed structured data entry forms to eliminate direct cell editing and enforce strict entity integrity.
 
 ---
 
@@ -68,27 +72,6 @@ Hospital-DBMS-Design-and-Implementation/
 │       reference. Contains the broken XLOOKUP formula chains that motivated
 │       the migration to Access.
 │
-├── OPD_Billing_-_Formula_bar_of_Patient_Name_column.jpeg
-│   └── Screenshot: XLOOKUP pulling patient name from Patients Record into
-│       the OPD Billing sheet.
-│
-├── Current_condition_formula_in_Patient_Records_sheet.jpeg
-│   └── Screenshot: Nested IF + XLOOKUP formula determining whether each
-│       patient is "Admitted (IPD)", "Active OPD", or "Registered".
-│
-├── Condition_transition_formula_in_patient_records_sheet.jpeg
-│   └── Screenshot: IF + AND + XLOOKUP formula flagging patients present
-│       in both OPD and IPD tables as "OPD → IPD Transition".
-│
-├── current_status_formula_in_OPD_billing_sheet.jpeg
-│   └── Screenshot: IF + XLOOKUP formula on the OPD side re-checking
-│       whether an OPD patient has since been admitted to IPD.
-│
-├── Formula_for_fetching_patients_total_amount_from_other_sheets_in_Patient_Records_sheet.jpeg
-│   └── Screenshot: IFERROR + IF + XLOOKUP formula attempting to store a
-│       single "Total Amount" on the master patient record — the formula
-│       that broke silently for OPD-to-IPD transition patients.
-│
 ├── Microsoft_Access_Relationships_between_tables.jpeg
 │   └── Screenshot: The actual Access Relationships window showing all four
 │       enforced one-to-many connections between the five tables.
@@ -100,72 +83,11 @@ Hospital-DBMS-Design-and-Implementation/
 
 ## Database Schema
 
-The Access database contains five normalized tables. `Name` exists only in `Patients Record`.
-`Age`, `No# of days`, `Total Amount`, `Discount Amount`, and `Net Amount` are stored nowhere —
-they are calculated at query time from raw source data.
+The Access database consists of five normalized tables. The relational schema and enforced relationships are shown below:
+* **Zero Redundancy:** Core fields exist only in their respective logical tables (for example, `Name` is strictly stored within the `Patients Record` table).
+* **On-Demand Computation:** Dynamic data—including `Age`, `No# of days`, `Total Amount`, `Discount Amount`, and `Net Amount`—is never stored directly. Instead, these values are calculated at query time from raw source data.
 
-### Patients Record
-| Field | Type | Constraint |
-|---|---|---|
-| Patient ID | Text | **PK** — unique, engine-enforced |
-| Name | Text | |
-| DOB | Date | |
-| Gender | Text | |
-| Registration Date | Date | |
-| Mobile No | Text | |
-| Alternate Mobile No | Text | |
-| Address | Text | |
-| Blood Group | Text | |
-| Status | Text | |
-
-### OPD Visits
-| Field | Type | Constraint |
-|---|---|---|
-| OPD Visit ID | AutoNumber | **PK** |
-| Patient ID | Text | **FK** → Patients Record |
-| Visit Date | Date | |
-| Bill Type ID | Number | **FK** → OPD Rates |
-| Bill type | Text | |
-| Quantity | Number | |
-| Status | Text | |
-| Payment Method | Text | |
-| Payment date | Date | |
-| Remarks | Memo | |
-
-### IPD Admissions
-| Field | Type | Constraint |
-|---|---|---|
-| Admission ID | AutoNumber | **PK** |
-| Patient ID | Text | **FK** → Patients Record |
-| Ward ID | Number | **FK** → IPD Rates |
-| Ward Name | Text | |
-| Bed No# | Number | |
-| Admission date | Date | |
-| Discharge date | Date | |
-| Status | Text | |
-| Payment Method | Text | |
-| Payment date | Date | |
-| Remarks | Memo | |
-
-### IPD Rates
-| Field | Type | Constraint |
-|---|---|---|
-| Ward ID | AutoNumber | **PK** |
-| Ward Name | Text | |
-| Ward Rate per day | Currency | |
-| Room Charges | Currency | |
-| Nursing Charges | Currency | |
-| Doctor Charges | Currency | |
-| Discount Rate | Number | |
-
-### OPD Rates
-| Field | Type | Constraint |
-|---|---|---|
-| Bill Type ID | AutoNumber | **PK** |
-| Bill Type Name | Text | |
-| Rate | Currency | |
-| IsQuantityBased | Yes/No | |
-| Discount Rate | Number | |
+This architecture leverages the fundamental strength of relational databases: storing core records efficiently in linked tables while computing all aggregations and calculations dynamically on demand.
 
 ---
 
@@ -184,6 +106,8 @@ A billing record cannot reference a patient, ward, or bill type that does not ex
 constraint is guaranteed at the engine level and was structurally impossible to replicate
 in Excel.
 
+![Microsoft Access Relationships Window — all five tables and four enforced one-to-many connections](Microsoft Access Relationships between tables.jpeg)
+
 ---
 
 ## Why Excel Was Not the Right Tool
@@ -193,10 +117,10 @@ Six specific capabilities were required that Excel cannot provide:
 | # | Gap | Impact in this project |
 |---|---|---|
 | 1 | **No Primary Key enforcement** | Same Patient ID could be entered twice with no warning |
-| 2 | **No referential integrity** | Deleting a patient left billing rows pointing to nobody |
+| 2 | **No referential integrity** | Deleting a patient record left orphan billing rows pointing to non-existent data. |
 | 3 | **XLOOKUP ≠ a table relationship** | Five stacked formulas contradicted each other when a patient existed in both OPD and IPD tables |
 | 4 | **No one-to-many support** | A patient with multiple visits required duplicating their personal details on every row |
-| 5 | **No atomic transactions** | An incomplete record (e.g. missing ward type) broke downstream formula totals silently |
+| 5 | **No atomic transactions** | Allowed partial data entry (e.g., missing ward type) to silently break downstream formulas |
 | 6 | **Calculated values belong in queries, not master records** | Storing `Total Amount` on the patient record failed the moment a patient had two simultaneous bills |
 
 ---
@@ -295,4 +219,4 @@ are needed.
 ## Author
 
 **Umair Asad**
-[github.com/UmairTheAnalyst](https://github.com/UmairTheAnalyst)
+[Umair Asad](https://github.com/UmairTheAnalyst)
