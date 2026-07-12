@@ -22,7 +22,7 @@
 ---
 
 🔗 **Project Case Study:**  
-👉 **[Explore the Detailed Migration Case Study](https://umairtheanalyst.github.io/spreadsheet-to-database-migration/)**
+👉 **[Explore the Detailed Migration Case Study](https://umairasad-data.github.io/spreadsheet-to-database-migration/)**
 
 ---
 
@@ -219,4 +219,4 @@ are needed.
 ## Author
 
 **Umair Asad**
-[Umair Asad](https://github.com/UmairTheAnalyst)
+[Umair Asad](https://github.com/umairasad-data)
